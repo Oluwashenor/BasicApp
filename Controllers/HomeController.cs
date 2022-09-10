@@ -1,9 +1,12 @@
 ﻿using App.Data;
 using App.Models;
 using App.Models.ViewModels;
+using App.Utilities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -64,28 +67,68 @@ namespace App.Controllers
         }
 
         [HttpGet]
-        public IActionResult Dependent(Profile model)
+        public IActionResult Dependent()
         {
-           
-            return View(model);
+            var user = _userManager.GetUserId(User);
+            var userData = _context.ApplicationUsers.FirstOrDefault(u => u.Id == user);
+            var viewModel = new DependentViewModel()
+            {
+                NextOfKinAddress = userData.NextOfKinAddress,
+                NextOfKinDateOfBirth = userData.NextOfKinDateOfBirth,
+                NextOfKinEmail= userData.NextOfKinEmail,
+                NextOfKinName = userData.NextOfKinName,
+                NextOfKinPhone= userData.NextOfKinPhone,
+            };
+            return View(viewModel);
         }
 
         [HttpPost]
-        public IActionResult DependentPost(Profile model)
+        public async Task<IActionResult> Dependent(DependentViewModel model)
         {
+            if (ModelState.IsValid)
+            {
+                var user = _userManager.GetUserId(User);
+                var userData = _context.ApplicationUsers.FirstOrDefault(u => u.Id == user);
+                userData.NextOfKinAddress = model.NextOfKinAddress;
+                userData.NextOfKinDateOfBirth = model.NextOfKinDateOfBirth;
+                userData.NextOfKinEmail = model.NextOfKinEmail;
+                userData.NextOfKinName = model.NextOfKinName;
+                userData.NextOfKinPhone = model.NextOfKinPhone;
+                _context.ApplicationUsers.Update(userData);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Education");
+            }
             return View();
         }
 
         [HttpGet]
         public IActionResult Education()
         {
-            return View();
+            var user = _userManager.GetUserId(User);
+            var userData = _context.ApplicationUsers.FirstOrDefault(u => u.Id == user);
+            var viewModel = new EducationViewModel()
+            {
+                StartYear = userData.StartDate,
+           EndYear = userData.EndDate,
+           Instituition = userData.Instituition
+        };
+            ViewBag.Degrees = new SelectList(MyConstants.Educations);
+            return View(viewModel);
         }
 
         [HttpPost]
-        public IActionResult Education(string name)
+        public async Task<IActionResult> Education(EducationViewModel model)
         {
-            return View();
+            var user = _userManager.GetUserId(User);
+            var userData = _context.ApplicationUsers.FirstOrDefault(u => u.Id == user);
+            userData.StartDate = model.StartYear;
+            userData.EndDate = model.EndYear;
+            userData.HighestQualification = model.Education;
+            userData.Instituition = model.Instituition;
+            ViewBag.Degrees = new SelectList(MyConstants.Educations);
+            _context.ApplicationUsers.Update(userData);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
 
         public IActionResult Privacy()

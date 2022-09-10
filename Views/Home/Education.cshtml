@@ -1,0 +1,78 @@
+﻿@model App.Models.ViewModels.EducationViewModel
+
+
+<div class="container">
+	<form asp-action="Education">
+		<div class="col-md-5">
+			<div class="form-group">
+				<label asp-for="Education" class="control-label">Highest Education</label>
+				<select asp-for="Education" class="form-control" asp-items="ViewBag.Degrees"></select>
+			</div>
+			@*<div class="form-group">
+				<label asp-for="Education" class="control-label"></label>
+				<input id="Education" asp-for="Education" type="text" class="form-control" />
+				<span asp-validation-for="Education"></span>
+			</div>*@
+
+			<div class="form-group">
+				<label asp-for="Instituition" class="control-label"></label>
+				<input id="Instituition" asp-for="Instituition" type="text" class="form-control" />
+				<span asp-validation-for="Instituition"></span>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="StartYear" class="control-label"></label>
+				<input id="StartYear" asp-for="StartYear" type="date" class="form-control" />
+				<span asp-validation-for="StartYear"></span>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="EndYear" class="control-label"></label>
+				<input id="StartYear" asp-for="EndYear" type="date" class="form-control" />
+				<span asp-validation-for="EndYear"></span>
+			</div>
+
+
+			<div class="">
+				<input type="submit" id="submit" class=" btn btn-success" value="Next" />
+			</div>
+		</div>
+	</form>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+	//$(document).ready(function () {
+	//	$("#submit").on("click", function(){
+	//	var firstName = $("#firstName").val();
+	//	var lastName = $("#lastName").val();
+	//	var dob = $("#dob").val();
+	//	console.log(firstName);
+	//	console.log(lastName);
+	//		console.log(dob);
+	//		$.ajax({
+	//			method: "POST",
+	//			dataType: 'json',
+	//			contentType: 'application/json; charset=utf-8',
+	//			data: JSON.stringify({
+	//				"FirstName": firstName,
+	//				"DateOfBirth": dob,
+	//				"LastName": lastName
+	//			}),
+	//			url: $(location).attr('origin') + "/Home/BioData/",
+	//			success: function (response) {
+	//				console.log("Success");
+	//			},
+	//			failure: function (error) {
+	//				console.log("Failed");
+	//			}
+	//		});
+
+
+
+	//	});
+		
+	//});
+
+</script>

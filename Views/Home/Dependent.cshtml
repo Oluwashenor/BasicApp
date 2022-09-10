@@ -1,21 +1,15 @@
-﻿@model App.Models.ViewModels.Profile
+﻿@model App.Models.ViewModels.DependentViewModel
 
 
 <div class="container">
 
 	<h4>Dependent Info</h4>
-	<form >
+	<form asp-action="Dependent">
 		<div class="col-md-5">
 			<div class="form-group">
-				<label asp-for="NextOfKinFirstName" class="control-label"></label>
-				<input asp-for="NextOfKinFirstName" type="text" class="form-control" />
-				<span asp-validation-for="NextOfKinFirstName"></span>
-			</div>
-
-			<div class="form-group">
-				<label asp-for="NextOfKinLastName" class="control-label"></label>
-				<input asp-for="NextOfKinLastName" type="text" class="form-control" />
-				<span asp-validation-for="NextOfKinLastName"></span>
+				<label asp-for="NextOfKinName" class="control-label"></label>
+				<input asp-for="NextOfKinName" type="text" class="form-control" />
+				<span asp-validation-for="NextOfKinName"></span>
 			</div>
 
 			<div class="form-group">
@@ -26,14 +20,19 @@
 
 			<div class="form-group">
 				<label asp-for="NextOfKinEmail" class="control-label"></label>
-				<input asp-for="NextOfKinEmail" type="date" class="form-control" />
+				<input asp-for="NextOfKinEmail" type="text" class="form-control" />
 				<span asp-validation-for="NextOfKinEmail"></span>
 			</div>
 			
 			<div class="form-group">
 				<label asp-for="NextOfKinPhone" class="control-label"></label>
-				<input asp-for="NextOfKinPhone" type="date" class="form-control" />
+				<input asp-for="NextOfKinPhone" type="text" class="form-control" />
 				<span asp-validation-for="NextOfKinPhone"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="NextOfKinDateOfBirth" class="control-label"></label>
+				<input id="dob" asp-for="NextOfKinDateOfBirth" type="date" class="form-control" />
+				<span asp-validation-for="NextOfKinDateOfBirth"></span>
 			</div>
 
 			<div class="form-group">
