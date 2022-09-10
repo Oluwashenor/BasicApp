@@ -1,0 +1,67 @@
+﻿@model App.Models.ViewModels.Profile
+
+
+<div class="container">
+	<form asp-action="BioData">
+		<div class="col-md-5">
+			<div class="form-group">
+				<label asp-for="FirstName" class="control-label"></label>
+				<input id="firstName" asp-for="FirstName" type="text" class="form-control" />
+				<span asp-validation-for="FirstName"></span>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="LastName" class="control-label"></label>
+				<input id="lastName" asp-for="LastName" type="text" class="form-control" />
+				<span asp-validation-for="FirstName"></span>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="DateOfBirth" class="control-label"></label>
+				<input id="dob" asp-for="DateOfBirth" type="date" class="form-control" />
+				<span asp-validation-for="DateOfBirth"></span>
+			</div>
+
+			<div class="">
+				<input type="submit" id="submit" class=" btn btn-success" value="Next" />
+			</div>
+		</div>
+	</form>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+	//$(document).ready(function () {
+	//	$("#submit").on("click", function(){
+	//	var firstName = $("#firstName").val();
+	//	var lastName = $("#lastName").val();
+	//	var dob = $("#dob").val();
+	//	console.log(firstName);
+	//	console.log(lastName);
+	//		console.log(dob);
+	//		$.ajax({
+	//			method: "POST",
+	//			dataType: 'json',
+	//			contentType: 'application/json; charset=utf-8',
+	//			data: JSON.stringify({
+	//				"FirstName": firstName,
+	//				"DateOfBirth": dob,
+	//				"LastName": lastName
+	//			}),
+	//			url: $(location).attr('origin') + "/Home/BioData/",
+	//			success: function (response) {
+	//				console.log("Success");
+	//			},
+	//			failure: function (error) {
+	//				console.log("Failed");
+	//			}
+	//		});
+
+
+
+	//	});
+		
+	//});
+
+</script>
